@@ -1,0 +1,51 @@
+.substitutes-display {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.substitutes-display h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.substitutes-list {
+  display: grid;
+  gap: 20px;
+}
+
+.substitute-item {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.substitute-item h4 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.substitute-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.substitute-item li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.substitute-item li:last-child {
+  border-bottom: none;
+}
+
+.no-substitutes {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  padding: 10px;
+} 
