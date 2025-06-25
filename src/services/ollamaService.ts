@@ -5,7 +5,7 @@ interface RecipeResponse {
   image_prompt?: string;
 }
 
-export const getRecipeFromOllama = async (query: string): Promise<RecipeResponse> => {
+export const getRecipeFromOllama = async (query: string, language: string = 'en'): Promise<RecipeResponse> => {
   try {
     const response = await fetch('http://localhost:11434/api/generate', {
       method: 'POST',
@@ -14,14 +14,7 @@ export const getRecipeFromOllama = async (query: string): Promise<RecipeResponse
       },
       body: JSON.stringify({
         model: 'mistral',
-        prompt: `Generate a recipe based on this query: "${query}". 
-                Return the response in this exact JSON format:
-                {
-                  "title": "Recipe Title",
-                  "ingredients": ["ingredient 1", "ingredient 2", ...],
-                  "instructions": ["step 1", "step 2", ...],
-                  "image_prompt": "A detailed prompt to generate an image of this dish"
-                }`,
+        prompt: `Generate a recipe based on this query: "${query}".\nReturn the response in this exact JSON format:\n{\n  "title": "Recipe Title",\n  "ingredients": ["ingredient 1", "ingredient 2", ...],\n  "instructions": ["step 1", "step 2", ...],\n  "image_prompt": "A detailed prompt to generate an image of this dish"\n}\nThe recipe, ingredients, and instructions must be in the following language: ${language}.`,
         stream: false,
       }),
     });

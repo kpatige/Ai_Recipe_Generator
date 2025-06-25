@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { getRecipe, speakText, formatRecipeForSpeech } from '../services/recipeService';
+import { getRecipe, speakTextInChunks, formatRecipeForSpeech } from '../services/recipeService';
 import { generateImage } from '../services/imageGenerationService';
 import { Mic, MicOff, Loader2, Image, Clock, Users, ChevronRight, Volume2, VolumeX, Search } from 'lucide-react';
 
 interface VoiceRecipeProps {
   isOpen: boolean;
   onClose: () => void;
+  selectedLanguage: 'en' | 'hi' | 'kn';
 }
 
 interface Recipe {
@@ -18,7 +19,7 @@ interface Recipe {
   difficulty?: string;
 }
 
-const VoiceRecipe: React.FC<VoiceRecipeProps> = ({ isOpen, onClose }) => {
+const VoiceRecipe: React.FC<VoiceRecipeProps> = ({ isOpen, onClose, selectedLanguage }) => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [recipe, setRecipe] = useState<Recipe | null>(null);
@@ -37,7 +38,8 @@ const VoiceRecipe: React.FC<VoiceRecipeProps> = ({ isOpen, onClose }) => {
       const recognition = new window.webkitSpeechRecognition();
       recognition.continuous = false;
       recognition.interimResults = true;
-      recognition.lang = 'en-US';
+      recognition.lang = selectedLanguage === 'en' ? 'en-US' : 
+                        selectedLanguage === 'hi' ? 'hi-IN' : 'kn-IN';
 
       recognition.onstart = () => {
         console.log('Speech recognition started');
@@ -79,7 +81,7 @@ const VoiceRecipe: React.FC<VoiceRecipeProps> = ({ isOpen, onClose }) => {
         recognition.abort();
       }
     };
-  }, []);
+  }, [selectedLanguage]);
 
   const handleRecipeQuery = async (query: string) => {
     setIsLoading(true);
@@ -87,7 +89,7 @@ const VoiceRecipe: React.FC<VoiceRecipeProps> = ({ isOpen, onClose }) => {
     setGeneratedImage(null);
     setCurrentStep(null);
     try {
-      const recipeData = await getRecipe(query);
+      const recipeData = await getRecipe(query, selectedLanguage);
       setRecipe(recipeData);
       if (recipeData.image_prompt) {
         generateRecipeImage(recipeData.image_prompt);
@@ -147,8 +149,8 @@ const VoiceRecipe: React.FC<VoiceRecipeProps> = ({ isOpen, onClose }) => {
     
     try {
       setIsSpeaking(true);
-      const text = formatRecipeForSpeech(recipe);
-      await speakText(text);
+      const text = formatRecipeForSpeech(recipe, selectedLanguage);
+      await speakTextInChunks(text, selectedLanguage);
     } catch (err) {
       console.error('Text-to-speech error:', err);
     } finally {

@@ -47,6 +47,7 @@ const Header: React.FC<HeaderProps> = ({ selectedLanguage, onLanguageChange }) =
       <VoiceRecipe 
         isOpen={isVoiceRecipeOpen}
         onClose={() => setIsVoiceRecipeOpen(false)}
+        selectedLanguage={selectedLanguage}
       />
     </>
   );
