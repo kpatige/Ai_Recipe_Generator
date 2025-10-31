@@ -1,6 +1,6 @@
 # 🍽️ AI Recipe Generator - BiteAI
 
-**BiteAI** is a cutting-edge AI-powered food assistant that helps users generate creative, personalized recipes from text or voice inputs. It also supports food recognition and image-based recipe suggestions using Gemini API and Ollama Mistral.
+**BiteAI**- AI recipe generator web application that helps users discover personalized recipes using Artificial Intelligence. The user simply takes photo of the dish or enter the dish name, and the platform instantly generates detailed recipes, step-by-step cooking instructions, nutrients value, and even estimated prep times all through a clean, responsive, and engaging user interface. It also supports food recognition and image-based recipe suggestions using Gemini API and Ollama Mistral.
 
 ---
 
@@ -15,6 +15,7 @@
   - Instructions
   - Cooking time
   - Personalization tags
+  - nutrients value
 - 📢 Text-to-speech output for accessibility
 - ♿ Keyboard navigation & high-contrast UI mode
 
@@ -22,7 +23,8 @@
 
 ## 🔧 Tech Stack
 
-- **Frontend:** React.js, TypeScript, Tailwind CSS
+- **Frontend:** React.js, Tailwind CSS, JavaScript, HTML, CSS
+- **Backend:** TypeScript, Node.js (integrated with Gemini AI API)
 - **AI Models:** Gemini API, Ollama Mistral
 - **Accessibility:** ARIA roles, text-to-speech, contrast toggle
 
