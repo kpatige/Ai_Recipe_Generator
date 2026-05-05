@@ -353,6 +353,7 @@ export const recognizeFood = async (imageFile: File, language: Language): Promis
     console.log('Using prompt for language:', language);
 
     console.log('Sending request to Gemini API...');
+    await new Promise(resolve => setTimeout(resolve, 2000));
     const response = await fetch(`${API_URL}?key=${API_KEY}`, {
       method: 'POST',
       headers: {
