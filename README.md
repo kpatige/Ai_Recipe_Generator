@@ -91,6 +91,9 @@ bite-ai/
 ```
 
 ---
+<img width="1920" height="909" alt="image" src="https://github.com/user-attachments/assets/3f8ac100-c8d8-4967-8a6d-6313b9232faa" />
+
+
 
 ## ✨ Future Improvements
 
