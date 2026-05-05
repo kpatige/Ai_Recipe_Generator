@@ -1,6 +1,6 @@
 import { RecognitionResponse, Language } from '../types';
 
-const API_KEY = 'AIzaSyA2PxFHcWRmg8i3MFIazVFs_ymUjzdI0Og';
+const API_KEY = 'AIzaSyDffcssq6IoR5bLjs3nxMZJ-AsOOC4JIPM';
 const API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent';
 
 if (!API_KEY) {
